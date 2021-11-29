@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
 
+  get 'interventions/create'
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root 'home#index'

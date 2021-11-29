@@ -465,6 +465,7 @@ DEPENDENCIES
   faker
   font-awesome-rails
   font-awesome-sass
+  formtastic
   gmaps4rails
   groupdate
   has_scope
