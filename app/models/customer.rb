@@ -7,6 +7,6 @@ class Customer < ApplicationRecord
     has_many :buildings, dependent: :destroy
 
     def to_s
-        'Customer #' + self.id.to_s
+        self.company_name
     end
 end
