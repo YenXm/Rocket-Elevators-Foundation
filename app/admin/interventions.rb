@@ -61,8 +61,9 @@ ActiveAdmin.register Intervention do
             input :employee_id,
                   as: :select,
                   collection: Employee.all,
-                  prompt: 'Null', required: false,
-            input :report, label: 'Description'
+                  prompt: 'Null',
+                  required: false
+            input :report, label: 'Description', required: true
         end
 
         f.actions # adds the 'Submit' and 'Cancel' buttons
