@@ -4,7 +4,7 @@ ActiveAdmin.register Intervention do
     #
     # Uncomment all parameters which should be permitted for assignment
     #
-    permit_params :author,
+    permit_params :author_id,
                   :customer_id,
                   :building_id,
                   :employee_id,
@@ -20,11 +20,9 @@ ActiveAdmin.register Intervention do
     form do |f|
         f.semantic_errors # shows errors on :base
         inputs do
-            input :author,
+            input :author_id,
                   as: :select,
-                  collection: [
-                      current_user.first_name + ' ' + current_user.last_name,
-                  ],
+                  collection: [current_user.employees.first],
                   include_blank: false
             input :customer_id,
                   as: :select,
