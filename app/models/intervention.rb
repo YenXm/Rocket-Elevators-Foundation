@@ -1,6 +1,6 @@
 class Intervention < ApplicationRecord
     #TODO remove wrong optional options
-    belongs_to :employee
+    belongs_to :employee, optional: true
     belongs_to :customer
     belongs_to :building
     belongs_to :battery

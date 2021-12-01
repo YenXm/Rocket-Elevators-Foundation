@@ -61,7 +61,7 @@ ActiveAdmin.register Intervention do
             input :employee_id,
                   as: :select,
                   collection: Employee.all,
-                  prompt: 'Null'
+                  prompt: 'Null', required: false,
             input :report, label: 'Description', required: true
         end
 
