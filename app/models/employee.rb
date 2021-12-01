@@ -7,6 +7,6 @@ class Employee < ApplicationRecord
     has_many :authors, class_name: 'Intervention'
 
     def to_s
-        'Employee #' + self.id.to_s
+        self.first_name + ' ' + self.last_name
     end
 end
