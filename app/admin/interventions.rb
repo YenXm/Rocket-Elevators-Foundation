@@ -20,6 +20,7 @@ ActiveAdmin.register Intervention do
     form do |f|
         f.semantic_errors # shows errors on :base
         inputs do
+            # Author_id Will be hidden at all time with css
             input :author_id,
                   as: :select,
                   collection: [current_user.employees.first],
@@ -32,6 +33,9 @@ ActiveAdmin.register Intervention do
                       onchange:
                           'cascade("customer","building"); collection("customer", "building")',
                   }
+
+            # building_id, battery_id, column_id, elevator_id will be initially hidden
+            # Selection option will be added as each field becomes displayed
             input :building_id,
                   as: :select,
                   input_html: {
@@ -54,7 +58,10 @@ ActiveAdmin.register Intervention do
             input :elevator_id, as: :select
         end
         inputs do
-            input :employee_id, as: :select, collection: Employee.all
+            input :employee_id,
+                  as: :select,
+                  collection: Employee.all,
+                  prompt: 'Null'
             input :report, label: 'Description', required: true
         end
 
