@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     # get '/audio', to: 'admin/dashboard#file'
 
     get 'admin/ibm_call' => 'admin/dashboard#ibm_call'
+    get '/ibm_call' => 'admin/dashboard#ibm_call'
 
     # get '/get_collection' => 'admin/collection'
     get '/collection' => 'interventions#collection'
