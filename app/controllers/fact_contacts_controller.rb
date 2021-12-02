@@ -1,9 +1,7 @@
 class FactContactsController < InheritedResources::Base
-
-  private
+    private
 
     def fact_contact_params
-      params.require(:fact_contact).permit()
+        params.require(:fact_contact).permit
     end
-
 end

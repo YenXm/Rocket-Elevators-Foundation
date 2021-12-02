@@ -1,80 +1,112 @@
-require "net/http"
-require "uri"
-require "json"
-
+require 'net/http'
+require 'uri'
+require 'json'
 
 class LeadsController < ApplicationController
-  before_action :set_lead, only: %i[ show edit update destroy ]
-  protect_from_forgery except: :home
-  # GET /leads or /leads.json
-  def index
-    @leads = Lead.all
-  end
-  # GET /leads/1 or /leads/1.json
-  def show
-  end
-  # GET /leads/new
-  def new
-    @lead = Lead.new
-  end
-  # GET /leads/1/edit
-  def edit
-  end
+    before_action :set_lead, only: %i[show edit update destroy]
+    protect_from_forgery except: :home
 
-  # POST /leads or /leads.json
-  def create
-    @lead = Lead.new(lead_params)
-    respond_to do |format|
-      if @lead.save
-        # Dropbox.new(@lead).call
-        format.html { redirect_to root_path, notice: "Lead was successfully created." }
-        format.json { render :show, status: :created, location: @lead }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @lead.errors, status: :unprocessable_entity }
-      end
+    # GET /leads or /leads.json
+    def index
+        @leads = Lead.all
     end
-    ZendeskAPI::Ticket.create!(@client,
-      :subject => "#{@lead.full_name} from #{@lead.company_name}",
-      :requester => {"name": @lead.email},
-      #:type => { "question"  },
-      :comment => { :value =>
-      "The contact #{@lead.full_name} from company #{@lead.company_name} can be reached at email #{@lead.email} and at phone number #{@lead.phone}. #{@lead.department_in_charge_of_the_elevators} has a project named #{@lead.project_name} which would require contribution from Rocket Elevators.
+
+    # GET /leads/1 or /leads/1.json
+    def show; end
+
+    # GET /leads/new
+    def new
+        @lead = Lead.new
+    end
+
+    # GET /leads/1/edit
+    def edit; end
+
+    # POST /leads or /leads.json
+    def create
+        @lead = Lead.new(lead_params)
+        respond_to do |format|
+            if @lead.save
+                # Dropbox.new(@lead).call
+                format.html do
+                    redirect_to root_path,
+                                notice: 'Lead was successfully created.'
+                end
+                format.json { render :show, status: :created, location: @lead }
+            else
+                format.html { render :new, status: :unprocessable_entity }
+                format.json do
+                    render json: @lead.errors, status: :unprocessable_entity
+                end
+            end
+        end
+        ZendeskAPI::Ticket.create!(
+            @client,
+            subject: "#{@lead.full_name} from #{@lead.company_name}",
+            requester: {
+                'name': @lead.email,
+            },
+            #:type => { "question"  },
+            comment: {
+                value:
+                    "The contact #{@lead.full_name} from company #{@lead.company_name} can be reached at email #{@lead.email} and at phone number #{@lead.phone}. #{@lead.department_in_charge_of_the_elevators} has a project named #{@lead.project_name} which would require contribution from Rocket Elevators.
         #{@lead.project_description}
-        Attached Message: #{@lead.message}"},
-      :type => "question",
-      :priority => "urgent")
-  end
+        Attached Message: #{@lead.message}",
+            },
+            type: 'question',
+            priority: 'urgent',
+        )
+    end
 
-  # PATCH/PUT /leads/1 or /leads/1.json
-  def update
-    respond_to do |format|
-      if @lead.update(lead_params)
-        format.html { redirect_to root_path, notice: "Lead was successfully updated." }
-        format.json { render :show, status: :ok, location: @lead }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @lead.errors, status: :unprocessable_entity }
-      end
+    # PATCH/PUT /leads/1 or /leads/1.json
+    def update
+        respond_to do |format|
+            if @lead.update(lead_params)
+                format.html do
+                    redirect_to root_path,
+                                notice: 'Lead was successfully updated.'
+                end
+                format.json { render :show, status: :ok, location: @lead }
+            else
+                format.html { render :edit, status: :unprocessable_entity }
+                format.json do
+                    render json: @lead.errors, status: :unprocessable_entity
+                end
+            end
+        end
     end
-  end
-  # DELETE /leads/1 or /leads/1.json
-  def destroy
-    @lead.destroy
-    respond_to do |format|
-      format.html { redirect_to leads_url, notice: "Lead was successfully destroyed." }
-      format.json { head :no_content }
+
+    # DELETE /leads/1 or /leads/1.json
+    def destroy
+        @lead.destroy
+        respond_to do |format|
+            format.html do
+                redirect_to leads_url,
+                            notice: 'Lead was successfully destroyed.'
+            end
+            format.json { head :no_content }
+        end
     end
-  end
-  private
+
+    private
 
     # Use callbacks to share common setup or constraints between actions.
     def set_lead
-      @lead = Lead.find(params[:id])
+        @lead = Lead.find(params[:id])
     end
+
     # Only allow a list of trusted parameters through.
     def lead_params
-      params.permit(:full_name, :company_name, :email, :phone, :project_name, :project_description, :department_in_charge_of_the_elevators, :message, :contact_attachment_file)
+        params.permit(
+            :full_name,
+            :company_name,
+            :email,
+            :phone,
+            :project_name,
+            :project_description,
+            :department_in_charge_of_the_elevators,
+            :message,
+            :contact_attachment_file,
+        )
     end
 end
-

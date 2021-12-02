@@ -1,11 +1,8 @@
-require File.expand_path(
-            File.dirname(__FILE__) + '/../../config/environment.rb',
-        )
+require File.expand_path(File.dirname(__FILE__) + '/../../config/environment.rb')
 require 'pg'
 
 PsqlQuery = PgConnection::MyConnection
-puts "\e[0;36mCurrently connected to:\e[0m '" +
-         ActiveRecord::Base.connection.current_database + "'"
+puts "\e[0;36mCurrently connected to:\e[0m '" + ActiveRecord::Base.connection.current_database + "'"
 puts "\e[0;36mCurrently connected for PG to:\e[0m '" + PsqlQuery.dbname + "'"
 
 def get_total_ele(customer_id)
@@ -16,9 +13,7 @@ def get_total_ele(customer_id)
         .all
         .each do |building|
             building.batteries.all.each do |battery|
-                battery.columns.all.each do |column|
-                    column.elevators.all.each { |elevator| elevator_total += 1 }
-                end
+                battery.columns.all.each { |column| column.elevators.all.each { |elevator| elevator_total += 1 } }
             end
         end
     return elevator_total
@@ -46,8 +41,7 @@ def intervention_param(result)
     if result == 'Incomplete'
         # Status that show a state of progession
         status = %w[Pending InProgress Resumed].sample
-        intervention_start =
-            Faker::Time.between(from: 730.days.ago, to: DateTime.now)
+        intervention_start = Faker::Time.between(from: 730.days.ago, to: DateTime.now)
         notes = get_notes(result)
         return(
             {
@@ -61,8 +55,7 @@ def intervention_param(result)
     elsif result == 'Fail'
         # Status that show a state unspecified interuption
         status = 'Interrupted'
-        intervention_start =
-            Faker::Time.between(from: 730.days.ago, to: DateTime.now)
+        intervention_start = Faker::Time.between(from: 730.days.ago, to: DateTime.now)
         notes = get_notes(result)
         return(
             {
@@ -75,43 +68,12 @@ def intervention_param(result)
         )
     else
         status = 'Complete'
-        intervention_start =
-            Faker::Time.between(from: 730.days.ago, to: DateTime.now)
+        intervention_start = Faker::Time.between(from: 730.days.ago, to: DateTime.now)
 
         # Act like rand(1..15) but with weight toward number 1, 2 ,3 and 4
         # Represent the interval between the start and end of an intervention
-        interval = [
-            1,
-            1,
-            1,
-            2,
-            2,
-            2,
-            3,
-            3,
-            3,
-            3,
-            4,
-            4,
-            4,
-            4,
-            5,
-            5,
-            5,
-            6,
-            7,
-            8,
-            9,
-            15,
-            13,
-            6,
-            12,
-        ].sample
-        intervention_end =
-            Faker::Time.between(
-                from: intervention_start,
-                to: intervention_start + 86_400 * interval,
-            )
+        interval = [1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 6, 7, 8, 9, 15, 13, 6, 12].sample
+        intervention_end = Faker::Time.between(from: intervention_start, to: intervention_start + 86_400 * interval)
 
         notes = get_notes(result)
         return(
@@ -298,11 +260,7 @@ namespace :wh do
                 building_n_intervention.times do |intervention|
                     result = get_result
                     intervention_params = intervention_param(result)
-                    Intervention::Base.create(
-                        intervention_params,
-                        employee_id,
-                        building.id,
-                    )
+                    Intervention::Base.create(intervention_params, employee_id, building.id)
                 end
 
                 building.batteries.all.each do |battery|
@@ -310,12 +268,7 @@ namespace :wh do
                     battery_n_intervention.times do |intervention|
                         result = get_result
                         intervention_params = intervention_param(result)
-                        Intervention::Base.create(
-                            intervention_params,
-                            employee_id,
-                            building.id,
-                            battery_id: battery.id,
-                        )
+                        Intervention::Base.create(intervention_params, employee_id, building.id, battery_id: battery.id)
                     end
                     battery.columns.all.each do |column|
                         column_n_intervention = rand(0..2)

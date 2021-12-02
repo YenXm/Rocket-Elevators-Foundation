@@ -9,18 +9,14 @@ class InterventionsController < InheritedResources::Base
         if %w[column elevator].any? { |key| key == params['child'] }
             options_hash = Hash[:null, ''].merge!(options_hash)
         else
-            options_hash =
-                Hash["Select #{params['child']}", 0].merge!(options_hash)
+            options_hash = Hash["Select #{params['child']}", 0].merge!(options_hash)
         end
         render json: options_hash
     end
 
     def get_collection_classes
         # Parent.find(id of parent)
-        parent =
-            params['parent']['label'].capitalize.constantize.find(
-                params['parent']['val'],
-            )
+        parent = params['parent']['label'].capitalize.constantize.find(params['parent']['val'])
 
         childrens = params['child'].pluralize # childs as string
 
