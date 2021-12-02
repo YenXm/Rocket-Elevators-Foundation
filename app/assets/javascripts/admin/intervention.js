@@ -3,6 +3,20 @@ var child_field;
 var childrens_fields;
 var childrens_of_child_field;
 
+/*
+    Notes that every field formed by activeadmin/formtastic are built with the same
+    id structure i.e:
+    field foo id = intervention_foo_input
+    while the select id itself would be intervention_foo
+
+    This make it easy to create function that are usable across the whole cascade without
+    much hardcoding of parameter/args.
+
+    * the _id was hardcoded only because all the table/column are name COLUMN_NAME_id
+*/
+
+
+
 function cascade(parent, child) {
     display_cascade(parent, child);
 }
@@ -32,6 +46,8 @@ function display_cascade(parent, child) {
 }
 
 function collection(parent, child) {
+    // This is the function that do the ajax call and then update on the option of the child's options
+
     // Both args must be lowercase in sigular
     var parent_selection = $(`#intervention_${parent}_id`).val();
     if (parent_selection && parent_selection != 0) {
@@ -47,9 +63,7 @@ function collection(parent, child) {
                 // remove previous options
                 child_input.empty();
                 $.each(data, function (key, value) {
-                    child_input.append(
-                        $("<option></option>").attr("value", value).text(key)
-                    );
+                    child_input.append($("<option></option>").attr("value", value).text(key));
                 });
             }
         );

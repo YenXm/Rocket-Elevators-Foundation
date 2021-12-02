@@ -28,16 +28,11 @@ class LeadsController < ApplicationController
         respond_to do |format|
             if @lead.save
                 # Dropbox.new(@lead).call
-                format.html do
-                    redirect_to root_path,
-                                notice: 'Lead was successfully created.'
-                end
+                format.html { redirect_to root_path, notice: 'Lead was successfully created.' }
                 format.json { render :show, status: :created, location: @lead }
             else
                 format.html { render :new, status: :unprocessable_entity }
-                format.json do
-                    render json: @lead.errors, status: :unprocessable_entity
-                end
+                format.json { render json: @lead.errors, status: :unprocessable_entity }
             end
         end
         ZendeskAPI::Ticket.create!(
@@ -62,16 +57,11 @@ class LeadsController < ApplicationController
     def update
         respond_to do |format|
             if @lead.update(lead_params)
-                format.html do
-                    redirect_to root_path,
-                                notice: 'Lead was successfully updated.'
-                end
+                format.html { redirect_to root_path, notice: 'Lead was successfully updated.' }
                 format.json { render :show, status: :ok, location: @lead }
             else
                 format.html { render :edit, status: :unprocessable_entity }
-                format.json do
-                    render json: @lead.errors, status: :unprocessable_entity
-                end
+                format.json { render json: @lead.errors, status: :unprocessable_entity }
             end
         end
     end
@@ -80,10 +70,7 @@ class LeadsController < ApplicationController
     def destroy
         @lead.destroy
         respond_to do |format|
-            format.html do
-                redirect_to leads_url,
-                            notice: 'Lead was successfully destroyed.'
-            end
+            format.html { redirect_to leads_url, notice: 'Lead was successfully destroyed.' }
             format.json { head :no_content }
         end
     end
