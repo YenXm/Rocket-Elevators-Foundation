@@ -11,7 +11,7 @@ class InterventionsController < InheritedResources::Base
 
         # Determine if we need to add a null field to the hash
         if %w[column elevator].any? { |key| key == params['child'] }
-            options_hash = Hash[:null, ''].merge!(options_hash)
+            options_hash = Hash[:None, ''].merge!(options_hash)
         else
             # [customer, building, battery]
             options_hash = Hash["Select #{params['child']}", 0].merge!(options_hash)

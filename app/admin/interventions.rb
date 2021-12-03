@@ -47,7 +47,7 @@ ActiveAdmin.register Intervention do
             input :elevator_id, as: :select
         end
         inputs do
-            input :employee_id, as: :select, collection: Employee.all
+            input :employee_id, as: :select, collection: Employee.all, prompt: 'None'
             input :report, label: 'Description', required: true
         end
 
