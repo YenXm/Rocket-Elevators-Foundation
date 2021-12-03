@@ -15,36 +15,22 @@ def ibm_call
     text_to_speech.service_url = ENV['IBM_URL']
     text_to_speech.configure_http_client(disable_ssl_verification: true)
 
-    begin
-        File.open('public/dashboard_audio.wav', 'wb') do |audio_file|
-            response =
-                text_to_speech.synthesize(
-                    text: get_text_to_speech_text,
-                    accept: 'audio/wav',
-                    voice: 'en-US_MichaelV3Voice',
-                )
-            audio_file.write(response.result)
-        end
-        File.open('public/starwars_suck.wav', 'wb') do |audio_file2|
-            response2 =
-                next_text.synthesize(
-                    text:
-                        "Liam Neeson was so eager to be in the film that he signed on without having read the script.
+    File.open('public/dashboard_audio.wav', 'wb') do |audio_file|
+        response =
+            text_to_speech.synthesize(text: get_text_to_speech_text, accept: 'audio/wav', voice: 'en-US_MichaelV3Voice')
+        audio_file.write(response.result)
+    end
+    File.open('public/starwars_suck.wav', 'wb') do |audio_file2|
+        response2 =
+            next_text.synthesize(
+                text:
+                    "Liam Neeson was so eager to be in the film that he signed on without having read the script.
      During filming, Ewan McGregor made lightsaber noises as he dueled. George Lucas explained many times that the sound effects would be added in by the special effects people later on. Ewan said 'I kept getting carried away.'
       Qui-Gon Jinn's communicator is a redecorated Gillette Sensor Excel Razor for Women. ",
-                    accept: 'audio/wav',
-                    voice: 'en-US_MichaelV3Voice',
-                )
-            audio_file2.write(response2.result)
-        end
-    rescue => exception
-        if exception.to_s.split(',')[0] == 'Error: Forbidden'
-            render plain: 'They free trial key has been fully used'
-        elsif exception.to_s.split(',')[0] == 'Error: Unauthorized'
-            rend plain: 'The api key is not authorized to perform this action'
-        end
-    else
-        render plain: 'It worked!, please refresh the page to update the audio player'
+                accept: 'audio/wav',
+                voice: 'en-US_MichaelV3Voice',
+            )
+        audio_file2.write(response2.result)
     end
 end
 
