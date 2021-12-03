@@ -33,7 +33,7 @@ All api are now working on personal key which cann all be found in the local_env
 ### Bonus 2
 1. The first api that I implemented get monetary data. It is used [there](http://rocketyenxm.site/admin/exchange_rate). I first created a table with a list of currency gathered from one of the possible GET method of the api and the Calculate button does a call to the server which in return, call the api with both currency chosen and return the basic transfer rate which is use to calculate the result.
 2. The second api is much more simple and only return a list of country name with their code(US, CA, FR) associated as a json. It was use to populate a new table.
-3. With the previous list of country, the third api is use to get the covid stats by countries. IT work similarly as the first one.
+3. With the previous list of country, the third api is use to get the covid stats by countries. IT work similarly as the first one. [Can be found here](http://rocketyenxm.site/admin/covid_stats)
 
 
 
