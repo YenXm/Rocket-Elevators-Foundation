@@ -37,6 +37,7 @@ class QuotesController < ApplicationController
         ZendeskAPI::Ticket.create!(
             @client,
             subject: "#{@quote.company_name}",
+            requester: "#{@quote.email}",
             comment: {
                 value:
                     "The company #{@quote.company_name} has made a quote for a building of type #{@quote.building_type} and wants the #{@quote.product_line} service.
