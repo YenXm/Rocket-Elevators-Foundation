@@ -21,6 +21,8 @@ To create a new intervention you have to go into the backoffice and go to the in
 
 ## Zendesk
 When a new interventions is created, a new ticket should also be created in zendesk. All the the data that we want are enter in the field section of the ticket.
+Username: levy.gagne@gmail.com
+Password: l7lP@I0ZP@Y$$w0%xl%N6N5*
 
 [Zendesk link](https://rocketelevator8423.zendesk.com/agent/)
 
