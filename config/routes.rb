@@ -30,5 +30,8 @@ Rails.application.routes.draw do
     get '/exchange_rate' => 'admin/exchange_rate#get_exchange_rates'
     get '/symbol' => 'admin/exchange_rate#symbol'
 
+    # Covid stats api
+    get '/covid_stats' => 'admin/covid_stats#get_covid_stats'
+
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

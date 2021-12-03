@@ -1,8 +1,8 @@
 <%= semantic_form_for interventions_create_path  do |f| %>
     <%= f.inputs do %>
         <%= f.input :number %>
-        <%= f.input :from_currency, as: :select, collection: Currency.all%>
-        <%= f.input :to_currency, as: :select, collection: Currency.all%>
+        <%= f.input :from_currency, as: :datalist, collection: Currency.all%>
+        <%= f.input :to_currency, as: :datalist, collection: Currency.all%>
     <% end %>
 <% end %>
 <button type="button" class="btn btn" id="calculate_button" onclick=get_exchange_rate()>Calculate</button>

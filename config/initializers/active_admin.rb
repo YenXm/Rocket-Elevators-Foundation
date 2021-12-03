@@ -222,6 +222,7 @@ ActiveAdmin.setup do |config|
     config.register_javascript 'https://www.google.com/jsapi'
     config.register_javascript 'admin/intervention.js'
     config.register_javascript 'admin/currency.js'
+    config.register_javascript 'admin/covid.js'
 
     # == CSV options
     #
@@ -343,5 +344,6 @@ ActiveAdmin.setup do |config|
     config.namespace :admin do |admin|
         admin.build_menu { |menu| menu.add label: 'Building Parts', priority: 0 }
         admin.build_menu { |menu| menu.add label: 'Users +', priority: 0 }
+        admin.build_menu { |menu| menu.add label: 'API +', priority: 2 }
     end
 end

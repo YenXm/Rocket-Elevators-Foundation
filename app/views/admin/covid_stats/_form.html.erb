@@ -1,0 +1,7 @@
+
+<%= semantic_form_for interventions_create_path  do |f| %>
+    <%= f.inputs do %>
+        <%= f.input :country, as: :datalist, collection: Country.all%>
+    <% end %>
+<% end %>
+<button type="button" class="btn btn" id="calculate_button_covid" onclick=get_covid_stats() >Calculate</button>

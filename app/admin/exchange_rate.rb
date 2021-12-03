@@ -1,4 +1,5 @@
 ActiveAdmin.register_page 'Exchange rate' do
+    menu parent: "API +"
     controller do
         def get_exchange_rates
             require 'uri'
