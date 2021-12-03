@@ -5,79 +5,77 @@ require 'ibm_watson/authenticators'
 require 'ibm_watson/text_to_speech_v1'
 include IBMWatson
 
+def ibm_call
+    authenticator = Authenticators::IamAuthenticator.new(apikey: ENV['IBM_API_TOKEN'])
+    text_to_speech = TextToSpeechV1.new(authenticator: authenticator)
+    next_text = TextToSpeechV1.new(authenticator: authenticator)
+    next_text.service_url = ENV['IBM_URL']
+    next_text.configure_http_client(disable_ssl_verification: true)
+
+    text_to_speech.service_url = ENV['IBM_URL']
+    text_to_speech.configure_http_client(disable_ssl_verification: true)
+
+    begin
+        File.open('public/dashboard_audio.wav', 'wb') do |audio_file|
+            response =
+                text_to_speech.synthesize(
+                    text: get_text_to_speech_text,
+                    accept: 'audio/wav',
+                    voice: 'en-US_MichaelV3Voice',
+                )
+            audio_file.write(response.result)
+        end
+        File.open('public/starwars_suck.wav', 'wb') do |audio_file2|
+            response2 =
+                next_text.synthesize(
+                    text:
+                        "Liam Neeson was so eager to be in the film that he signed on without having read the script.
+     During filming, Ewan McGregor made lightsaber noises as he dueled. George Lucas explained many times that the sound effects would be added in by the special effects people later on. Ewan said 'I kept getting carried away.'
+      Qui-Gon Jinn's communicator is a redecorated Gillette Sensor Excel Razor for Women. ",
+                    accept: 'audio/wav',
+                    voice: 'en-US_MichaelV3Voice',
+                )
+            audio_file2.write(response2.result)
+        end
+    rescue => exception
+        if exception.to_s.split(',')[0] == 'Error: Forbidden'
+            render plain: 'They free trial key has been fully used'
+        elsif exception.to_s.split(',')[0] == 'Error: Unauthorized'
+            rend plain: 'The api key is not authorized to perform this action'
+        end
+    else
+        render plain: 'It worked!, please refresh the page to update the audio player'
+    end
+end
+
+# ---------------------- IBM WATSON HELPERS METHODS ----------------------
+def get_text_to_speech_data
+    data = {}
+    data['elevator_amount'] = Elevator.count
+    data['customer_amount'] = Customer.count
+    data['building_amount'] = Building.count
+    data['stopped_elevators'] = Elevator.all.select { |elevator| elevator.status == 'offline' }.count
+    data['quote_amount'] = Quote.count
+    data['lead_amount'] = Lead.count
+    data['battery_amount'] = Battery.count
+    data['city_amount'] = Address.select(:city).distinct.count
+    return data
+end
+
+def get_text_to_speech_text
+    data = get_text_to_speech_data
+    first_line = "Greetings #{current_user}            \n"
+    second_line =
+        "There are currently #{data['elevator_amount']} elevators deployed in the #{data['building_amount']} buildings of your #{data['customer_amount']} customers \n"
+    third_line = "You currently have #{data['quote_amount']} quote awaiting proccessing \n         "
+    fourth_line = "You currently have #{data['lead_amount']} leads in your contract request \n"
+    last_line = "#{data['battery_amount']} battery are deployed across #{data['city_amount']} cities"
+
+    text = first_line + second_line + third_line + fourth_line + last_line
+end
 ActiveAdmin.register_page 'Dashboard' do
     menu priority: 1, label: proc { I18n.t('active_admin.dashboard') }
 
-    controller do
-        def ibm_call
-            authenticator = Authenticators::IamAuthenticator.new(apikey: ENV['IBM_API_TOKEN'])
-            text_to_speech = TextToSpeechV1.new(authenticator: authenticator)
-            next_text = TextToSpeechV1.new(authenticator: authenticator)
-            next_text.service_url = ENV['IBM_URL']
-            next_text.configure_http_client(disable_ssl_verification: true)
-
-            text_to_speech.service_url = ENV['IBM_URL']
-            text_to_speech.configure_http_client(disable_ssl_verification: true)
-
-            begin
-                File.open('public/dashboard_audio.wav', 'wb') do |audio_file|
-                    response =
-                        text_to_speech.synthesize(
-                            text: get_text_to_speech_text,
-                            accept: 'audio/wav',
-                            voice: 'en-US_MichaelV3Voice',
-                        )
-                    audio_file.write(response.result)
-                end
-                File.open('public/starwars_suck.wav', 'wb') do |audio_file2|
-                    response2 =
-                        next_text.synthesize(
-                            text:
-                                "Liam Neeson was so eager to be in the film that he signed on without having read the script.
-             During filming, Ewan McGregor made lightsaber noises as he dueled. George Lucas explained many times that the sound effects would be added in by the special effects people later on. Ewan said 'I kept getting carried away.'
-              Qui-Gon Jinn's communicator is a redecorated Gillette Sensor Excel Razor for Women. ",
-                            accept: 'audio/wav',
-                            voice: 'en-US_MichaelV3Voice',
-                        )
-                    audio_file2.write(response2.result)
-                end
-            rescue => exception
-                if exception.to_s.split(',')[0] == 'Error: Forbidden'
-                    render plain: 'They free trial key has been fully used'
-                elsif exception.to_s.split(',')[0] == 'Error: Unauthorized'
-                    rend plain: 'The api key is not authorized to perform this action'
-                end
-            else
-                render plain: 'It worked!, please refresh the page to update the audio player'
-            end
-        end
-
-        # ---------------------- IBM WATSON HELPERS METHODS ----------------------
-        def get_text_to_speech_data
-            data = {}
-            data['elevator_amount'] = Elevator.count
-            data['customer_amount'] = Customer.count
-            data['building_amount'] = Building.count
-            data['stopped_elevators'] = Elevator.all.select { |elevator| elevator.status == 'offline' }.count
-            data['quote_amount'] = Quote.count
-            data['lead_amount'] = Lead.count
-            data['battery_amount'] = Battery.count
-            data['city_amount'] = Address.select(:city).distinct.count
-            return data
-        end
-
-        def get_text_to_speech_text
-            data = get_text_to_speech_data
-            first_line = "Greetings #{current_user}            \n"
-            second_line =
-                "There are currently #{data['elevator_amount']} elevators deployed in the #{data['building_amount']} buildings of your #{data['customer_amount']} customers \n"
-            third_line = "You currently have #{data['quote_amount']} quote awaiting proccessing \n         "
-            fourth_line = "You currently have #{data['lead_amount']} leads in your contract request \n"
-            last_line = "#{data['battery_amount']} battery are deployed across #{data['city_amount']} cities"
-
-            text = first_line + second_line + third_line + fourth_line + last_line
-        end
-    end
     content title: proc { I18n.t('active_admin.dashboard') } do
         PsqlQuery = PgConnection::MyConnection
         first_2_question =
