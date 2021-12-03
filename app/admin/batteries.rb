@@ -1,4 +1,6 @@
 ActiveAdmin.register Battery do
+
+    menu parent: "Building Parts"
     permit_params :building_id,
                   :battery_type,
                   :status,

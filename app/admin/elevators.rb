@@ -1,4 +1,6 @@
 ActiveAdmin.register Elevator do
+    menu parent: "Building Parts"
+
     controller do
         include ActiveAdmin::ElevatorHelper
 

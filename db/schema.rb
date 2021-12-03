@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_29_151606) do
+ActiveRecord::Schema.define(version: 2021_12_02_205503) do
     create_table 'active_admin_comments', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
         t.string 'namespace'
         t.text 'body'
@@ -114,6 +114,16 @@ ActiveRecord::Schema.define(version: 2021_11_29_151606) do
         t.datetime 'updated_at', null: false
         t.bigint 'battery_id'
         t.index ['battery_id'], name: 'index_columns_on_battery_id'
+    end
+
+    create_table 'currencies', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
+        t.integer 'currency_ID'
+        t.string 'currency_short_name'
+        t.string 'fullname'
+        t.string 'currency_symbol'
+        t.string 'major'
+        t.string 'is_crypto'
+        t.integer 'countryID'
     end
 
     create_table 'customers', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|

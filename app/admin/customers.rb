@@ -1,4 +1,6 @@
 ActiveAdmin.register Customer do
+    menu parent: "Users +"
+
     permit_params :user_id,
                   :customer_creation_date,
                   :company_name,

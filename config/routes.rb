@@ -26,5 +26,9 @@ Rails.application.routes.draw do
     # get '/get_collection' => 'admin/collection'
     get '/collection' => 'interventions#collection'
 
+    # Exchange rate api
+    get '/exchange_rate' => 'admin/exchange_rate#get_exchange_rates'
+    get '/symbol' => 'admin/exchange_rate#symbol'
+
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

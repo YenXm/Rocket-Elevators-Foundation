@@ -159,11 +159,7 @@ ActiveAdmin.setup do |config|
     # You can exclude possibly sensitive model attributes from being displayed,
     # added to forms, or exported by default by ActiveAdmin
     #
-    config.filter_attributes = %i[
-        encrypted_password
-        password
-        password_confirmation
-    ]
+    config.filter_attributes = %i[encrypted_password password password_confirmation]
 
     # == Localize Date/Time Format
     #
@@ -225,6 +221,7 @@ ActiveAdmin.setup do |config|
     #   config.register_javascript 'my_javascript.js'
     config.register_javascript 'https://www.google.com/jsapi'
     config.register_javascript 'admin/intervention.js'
+    config.register_javascript 'admin/currency.js'
 
     # == CSV options
     #
@@ -342,4 +339,9 @@ ActiveAdmin.setup do |config|
     # You can switch to using Webpacker here.
     #
     # config.use_webpacker = true
+
+    config.namespace :admin do |admin|
+        admin.build_menu { |menu| menu.add label: 'Building Parts', priority: 0 }
+        admin.build_menu { |menu| menu.add label: 'Users +', priority: 0 }
+    end
 end

@@ -1,4 +1,6 @@
 ActiveAdmin.register Lead do
+
+
     permit_params :full_name,
                   :company_name,
                   :email,

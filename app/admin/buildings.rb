@@ -1,4 +1,6 @@
 ActiveAdmin.register Building do
+    menu parent: "Building Parts"
+
     permit_params :customer_id,
                   :full_name_of_the_building_administrator,
                   :email_of_the_administrator_of_the_building,

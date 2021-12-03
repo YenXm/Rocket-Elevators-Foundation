@@ -1,4 +1,6 @@
 ActiveAdmin.register User do
+    menu parent: "Users +"
+
     permit_params :first_name,
                   :last_name,
                   :email,
