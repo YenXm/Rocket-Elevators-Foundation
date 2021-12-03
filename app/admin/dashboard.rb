@@ -118,12 +118,12 @@ ActiveAdmin.register_page 'Dashboard' do
                              },
                          ]
 
+        ibm_call
         div "Hello #{current_user}", id: 'Audio' do
         end
         audio controls: true do
             source src: audio_path('/dashboard_audio.wav'), type: 'audio/wav'
         end
-        div { render partial: 'ibm_button' }
         div 'StarWars' do
         end
         audio controls: true do
