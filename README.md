@@ -35,8 +35,6 @@ Password: l7lP@I0ZP@Y$$w0%xl%N6N5*
 
 ## Bonus
 
-<br>
-
 ### Bonus 1
 All api are now working on personal key which cann all be found in the local_env.yml file in the server.
 
