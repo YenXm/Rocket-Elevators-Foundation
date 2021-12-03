@@ -11,18 +11,29 @@ rake wh:reset => Does all the previous rake command in order
 rake final:setup  => does rake db:reset and rake final:setup
 
 
-# Week8
-## Fact_Intervention
-https://github.com/khedayati/Rocket_Elevators_API/blob/master/lib/tasks/data_warehouse.rake
+# Week9
+## Interventions
+To create a new intervention you have to go into the backoffice and go to the interventions tab, then click on new intervention [or go to that link and login](http://rocketyenxm.site/admin/interventions/new)
 
-The rake file named data_warehouse.rake does the creation of the fact_intervention from line 141 to 156.
-It is integrated into the rake wh:make_table command.
+[The file of the tab can also be found here](https://github.com/YenXm/Rocket-Elevators-Foundation/blob/master/app/admin/interventions.rb)
 
-## Fake Data for fact_intervention
-https://github.com/khedayati/Rocket_Elevators_API/blob/master/lib/tasks/data_warehouse.rake
+<br>
 
-Also made found in data_warehouse.rake under the namespace wh:populate in the task intervention from line 209 to 270.
-It is intergrated in the rake final:setup as is the wh:make_table.
-### Where to see the data
-They can be seen on the database named LEVY_POSTGRES in the postgres server we have been using
+## Zendesk
+When a new interventions is created, a new ticket should also be created in zendesk. All the the data that we want are enter in the field section of the ticket.
+
+[Zendesk link](https://rocketelevator8423.zendesk.com/agent/)
+
+<br>
+
+## Bonus
+### Bonus 1
+All api are now working on personal key which cann all be found in the local_env.yml file in the server.
+
+### Bonus 2
+1. The first api that I implemented get monetary data. It is used [there](http://rocketyenxm.site/admin/exchange_rate). I first created a table with a list of currency gathered from one of the possible GET method of the api and the Calculate button does a call to the server which in return, call the api with both currency chosen and return the basic transfer rate which is use to calculate the result.
+2. The second api is much more simple and only return a list of country name with their code(US, CA, FR) associated as a json. It was use to populate a new table.
+3. With the previous list of country, the third api is use to get the covid stats by countries. IT work similarly as the first one.
+
+
 
