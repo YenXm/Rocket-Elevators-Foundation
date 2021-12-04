@@ -28,23 +28,73 @@ ActiveAdmin.register Intervention do
                   input_html: {
                       onchange: 'cascade("customer","building"); collection("customer", "building")',
                   }
-            input :building_id,
-                  as: :select,
-                  input_html: {
-                      onchange: 'collection("building", "battery"); cascade("building","battery")',
-                  }
-            input :battery_id,
-                  as: :select,
-                  input_html: {
-                      onchange: 'cascade("battery","column"); collection("battery", "column")',
-                  }
-            input :column_id,
-                  as: :select,
-                  input_html: {
-                      onchange: 'cascade("column","elevator"); collection("column", "elevator")',
-                  }
+            if f.object.new_record?
+                input :building_id,
+                      as: :select,
+                      collection: Building.all,
+                      input_html: {
+                          onchange: 'collection("building", "battery"); cascade("building","battery")',
+                          class: 'new_record',
+                      }
+                input :battery_id,
+                      as: :select,
+                      collection: Battery.all,
+                      input_html: {
+                          onchange: 'cascade("battery","column"); collection("battery", "column")',
+                          class: 'new_record',
+                      }
+                input :column_id,
+                      as: :select,
+                      collection: Column.all,
+                      input_html: {
+                          onchange: 'cascade("column","elevator"); collection("column", "elevator")',
+                          class: 'new_record',
+                      }
 
-            input :elevator_id, as: :select
+                input :elevator_id, as: :select, collection: Elevator.all, input_html: { class: 'new_record' }
+            else
+                input :building_id,
+                      as: :select,
+                      collection: Customer.find(f.object.customer_id).buildings,
+                      input_html: {
+                          onchange: 'collection("building", "battery"); cascade("building","battery")',
+                      }
+                input :battery_id,
+                      as: :select,
+                      collection: Building.find(f.object.building_id).batteries,
+                      input_html: {
+                          onchange: 'cascade("battery","column"); collection("battery", "column")',
+                      }
+                if f.object.battery_id.nil?
+                    input :column_id,
+                          as: :select,
+                          input_html: {
+                              onchange: 'cascade("column","elevator"); collection("column", "elevator")',
+                              class: 'new_record',
+                          }
+                else
+                    input :column_id,
+                          as: :select,
+                          collection: Battery.find(f.object.battery_id).columns,
+                          prompt: "None",
+                          input_html: {
+                              onchange: 'cascade("column","elevator"); collection("column", "elevator")',
+                              class: 'add_none1',
+                          }
+                end
+
+                if f.object.column_id.nil?
+                    input :elevator_id, as: :select, input_html: { class: 'new_record' }
+                else
+                    input :elevator_id,
+                          as: :select,
+                          collection: Column.find(f.object.column_id).elevators,
+                          prompt: 'None',
+                          input_html: {
+                              class: 'add_none2',
+                          }
+                end
+            end
         end
         inputs do
             input :employee_id, as: :select, collection: Employee.all, prompt: 'None'

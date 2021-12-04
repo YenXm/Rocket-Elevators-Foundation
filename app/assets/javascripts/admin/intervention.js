@@ -15,8 +15,6 @@ var childrens_of_child_field;
     * the _id was hardcoded only because all the table/column are name COLUMN_NAME_id
 */
 
-
-
 function cascade(parent, child) {
     display_cascade(parent, child);
 }
@@ -63,6 +61,7 @@ function collection(parent, child) {
                 // remove previous options
                 child_input.empty();
                 $.each(data, function (key, value) {
+                    console.log(data);
                     child_input.append($("<option></option>").attr("value", value).text(key));
                 });
             }
@@ -75,3 +74,14 @@ function lock_author() {
     $("#intervention_author").val(1);
     $("#intervention_author_input").hide();
 }
+$(document).ready(function () {
+    $(".new_record").parent().hide();
+    $(".new_record").parent().next().hide();
+
+    if ($("#intervention_column_id").val()) {
+        $(".add_none1").append($("<option></option>").attr("value", "").text("None"));
+    }
+    if ($("#intervention_elevator_id").val()) {
+        $(".add_none2").append($("<option></option>").attr("value", "").text("None"));
+    }
+});
