@@ -116,3 +116,20 @@ gem 'gmaps4rails'
 gem "ruby-progressbar", "~> 1.11"
 
 gem 'formtastic'
+
+gem "rspec", "~> 3.10"
+
+gem "rspec-core", "~> 3.10"
+
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+end
+
+
+gem "shoulda-matchers", "~> 2.8.0"
+
+gem 'html_validation', '~> 1.1', '>= 1.1.5'
+gem "shoulda", "~> 3.5.0"
+
+# gem "shoulda-context", "~> 2.0"
