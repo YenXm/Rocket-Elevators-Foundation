@@ -16,6 +16,6 @@ The module can be found [here](lib/elevator_media.rb)
 
 You can call the test using the command `bundle exec rspec spec/tester.rb`.
 
-
+And the file can be found [here](spec/tester.rb)
 
 
