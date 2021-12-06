@@ -1,16 +1,3 @@
-# COMMAND
-
-rake wh:make_table  => drop if exist and create tables in psql database
-
-rake wh:populate:* => populate psql tables with data from mysql database 
-
-* = quote, elevator, contact, customer, intervention
-
-rake wh:reset => Does all the previous rake command in order
-
-rake final:setup  => does rake db:reset and rake final:setup
-
-
 # Week10
 
 ## Streamer
@@ -27,7 +14,7 @@ The module can be found [here](lib/elevator_media.rb)
 
 3. Validate the proper association between the model intervention and its parent models
 
-You can call the test using the command *bundle exec rspec spec/tester.rb*.
+You can call the test using the command `bundle exec rspec spec/tester.rb`.
 
 
 
