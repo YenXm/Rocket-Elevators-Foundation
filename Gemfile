@@ -16,7 +16,7 @@ gem 'jquery-ui-rails'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 # Use Puma as the app server
-gem 'puma', '4.3.5'
+gem 'puma', '4.3.9'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -139,3 +139,6 @@ gem "webmock", "~> 3.14"
 
 
 gem "rest-client", "~> 2.1"
+
+
+gem "devise-security", "~> 0.16.0"

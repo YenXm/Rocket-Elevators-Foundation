@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/gregbell/active_admin.git
-  revision: ee32bae93c05b94ab9c590a188c10ae5894f5740
+  revision: fc7892a6bd844a1620beaf31a0a68b85abd80a44
   specs:
     activeadmin (2.9.0)
       arbre (~> 1.2, >= 1.2.1)
@@ -135,6 +135,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-security (0.16.0)
+      devise (>= 4.3.0, < 5.0)
     diff-lcs (1.4.4)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
@@ -301,12 +303,12 @@ GEM
       rack (>= 1.2, < 3)
     orm_adapter (0.5.0)
     parallel (1.21.0)
-    parser (3.0.3.1)
+    parser (3.0.3.2)
       ast (~> 2.4.1)
     pg (1.2.3)
     popper_js (2.9.3)
     public_suffix (4.0.6)
-    puma (4.3.5)
+    puma (4.3.9)
       nio4r (~> 2.0)
     pundit (2.1.1)
       activesupport (>= 3.0.0)
@@ -509,6 +511,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   country_select (~> 6.0)
   devise
+  devise-security (~> 0.16.0)
   dotenv-rails
   draper
   dropbox_api
@@ -531,7 +534,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   mysql2 (>= 0.4.4, < 0.6.0)
   pg
-  puma (= 4.3.5)
+  puma (= 4.3.9)
   pundit
   rails (~> 5.2.6)
   responders
