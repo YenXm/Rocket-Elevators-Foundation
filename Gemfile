@@ -122,12 +122,20 @@ gem "rspec", "~> 3.10"
 gem "rspec-core", "~> 3.10"
 
 group :development, :test do
-  gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem "shoulda-matchers", "~> 2.8.0"
+  # gem "factory_bot", "~> 6.2"
 
   gem "shoulda", "~> 3.5.0"
+
+
+  gem "factory_bot_rails", "~> 6.2"
 end
 
 
 
+
+gem "webmock", "~> 3.14"
+
+
+gem "rest-client", "~> 2.1"

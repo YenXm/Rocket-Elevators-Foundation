@@ -1,16 +1,40 @@
+require 'rest-client'
+
 module ElevatorMedia
     class Streamer
         def initialize(options = {})
             @video_list = { rickroll: 'dQw4w9WgXcQ' }
         end
+
+        def get_weather_from_service
+            weather_json = RestClient.get('http://weather_service.com')
+            parsed_weather_data = JSON.parse(weather_json) if weather_json
+        end
+
+        def build_youtube_url(video_name)
+            "http://www.youtube.com/embed/#{@video_list[video_name]}?enablejsapi=1&origin=http://example.com"
+        end
+
+        def get_covid_map
+            '<iframe src="https://public.domo.com/cards/YE040" width="900" height="600" marginheight="0" marginwidth="0" frameborder="0"></iframe>'
+        end
+
         def getContent(options = {})
             if options[:content_type] == 'video'
                 "<iframe id='player' type='text/html' width='640' height='390' style='position: relative; left: 28%;'
-        src='http://www.youtube.com/embed/#{@video_list[options[:video_name]]}?enablejsapi=1&origin=http://example.com'
-        frameborder='0'></iframe>"
+                src='#{self.build_youtube_url(options[:video_name])}'
+                frameborder='0'></iframe>"
             elsif options[:content_type] == 'weather'
-                puts 'here'
-                '<!-- weather widget start -->
+                return self.get_weather_widget
+            elsif options[:content_type] == 'covid'
+                return self.get_covid_map
+            elsif options[:content_type] == 'soccer'
+                return self.soccer_content
+            end
+        end
+
+        def get_weather_widget
+            '<!-- weather widget start -->
                     <div id="m-booked-weather-bl250-28587">
                         <div class="booked-wzs-250-175 weather-customize" style="background-color: #137ae9; width: 430px" id="width3">
                             <div class="booked-wzs-250-175_in">
@@ -107,10 +131,10 @@ module ElevatorMedia
                 <!-- weather widget end -->
 
                 '
-            elsif options[:content_type] == 'covid'
-                '<iframe src="https://public.domo.com/cards/YE040" width="900" height="600" marginheight="0" marginwidth="0" frameborder="0"></iframe>'
-            elsif options[:content_type] == 'soccer'
-                '<div id="fs-standings"></div>
+        end
+        
+        def soccer_content
+            '<div id="fs-standings"></div>
                 <script>
                     (function (w, d, s, o, f, js, fjs) {
                         w["fsStandingsEmbed"] = o;
@@ -128,7 +152,6 @@ module ElevatorMedia
                     mw("params", { leagueID: 1 });
                 </script>
                 '
-            end
         end
     end
 end
