@@ -14,7 +14,7 @@ class User < ApplicationRecord
            :recoverable,
            :rememberable,
            :registerable,
-           :password_expirable,
+        #    :password_expirable,
            :secure_validatable
 
     validates :email, presence: true, email: true

@@ -420,6 +420,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    secure_headers (6.3.3)
     selenium-webdriver (4.1.0)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -546,6 +547,7 @@ DEPENDENCIES
   ruby-progressbar (~> 1.11)
   rvm1-capistrano3
   sass-rails (~> 5.0)
+  secure_headers (~> 6.3)
   selenium-webdriver
   sendgrid-ruby
   shoulda (~> 3.5.0)

@@ -3628,8 +3628,8 @@ first_names.each_with_index do |first_name, index|
     @user =
         User.create(
             email: emails[index],
-            password: 'password',
-            password_confirmation: 'password',
+            password: 'Y%12Dn0Eqy*ofYU1eg@bGPdlm0#TQj3',
+            password_confirmation: 'Y%12Dn0Eqy*ofYU1eg@bGPdlm0#TQj3',
             first_name: first_names[index],
             last_name: last_names[index],
             function: functions[index],
@@ -3901,7 +3901,7 @@ while $i < 100
             first_name: Faker::Name.unique.first_name,
             last_name: Faker::Name.unique.last_name,
             email: Faker::Internet.unique.email,
-            password: 'password',
+            password: 'Y%12Dn0Eqy*ofYU1eg@bGPdlm0#TQj3',
         )
 
     #create a customer based on the user just created
