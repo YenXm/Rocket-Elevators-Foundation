@@ -24,6 +24,6 @@ module App
             YAML.load(File.open(env_file)).each { |key, value| ENV[key.to_s] = value } if File.exists?(env_file)
         end
         config.eager_load_paths << Rails.root.join('lib')
-        config.force_ssl = true
+        # config.force_ssl = true
     end
 end
