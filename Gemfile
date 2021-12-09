@@ -16,7 +16,7 @@ gem 'jquery-ui-rails'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 # Use Puma as the app server
-gem 'puma', '4.3.5'
+gem 'puma', '4.3.9'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -116,3 +116,31 @@ gem 'gmaps4rails'
 gem "ruby-progressbar", "~> 1.11"
 
 gem 'formtastic'
+
+gem "rspec", "~> 3.10"
+
+gem "rspec-core", "~> 3.10"
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem "shoulda-matchers", "~> 2.8.0"
+  # gem "factory_bot", "~> 6.2"
+
+  gem "shoulda", "~> 3.5.0"
+
+
+  gem "factory_bot_rails", "~> 6.2"
+end
+
+
+
+
+gem "webmock", "~> 3.14"
+
+
+gem "rest-client", "~> 2.1"
+
+
+gem "devise-security", "~> 0.16.0"
+
+gem "secure_headers", "~> 6.3"

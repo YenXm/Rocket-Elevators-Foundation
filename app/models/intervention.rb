@@ -7,4 +7,7 @@ class Intervention < ApplicationRecord
     belongs_to :column, optional: true
     belongs_to :elevator, optional: true
     belongs_to :author, class_name: 'Employee'
+
+    validates_presence_of :customer_id
+    validates_presence_of :building_id
 end

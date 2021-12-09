@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     devise_for :users, ActiveAdmin::Devise.config
     ActiveAdmin.routes(self)
     root 'home#index'
+    get '/media_player', to: 'home#media_player'
     get '/residential', to: 'home#residential'
     get '/commercial', to: 'home#commercial'
     get '/quote', to: 'home#quote'

@@ -1,0 +1,7 @@
+
+<%= ElevatorMedia::Streamer.new.getContent({:content_type => "video", :video_name => :rickroll}).html_safe %>
+<% puts ElevatorMedia::Streamer.new.getContent({:content_type => "weather"}) %>
+<%= ElevatorMedia::Streamer.new.getContent({:content_type => "weather"}).html_safe %>
+<%= ElevatorMedia::Streamer.new.getContent({:content_type => "covid"}).html_safe %>
+<%= ElevatorMedia::Streamer.new.getContent({:content_type => "soccer"}).html_safe %>
+

@@ -1,47 +1,21 @@
-# COMMAND
+# Week10
 
-rake wh:make_table  => drop if exist and create tables in psql database
+## Streamer
 
-rake wh:populate:* => populate psql tables with data from mysql database 
+The Streamer page is accessed through the route `/media_player` and provide an embed youtube video player. The getContent method inside the Streamer class take the name of a video (They must be set beforehand in the initialize methode of the Streamer class) and will return a html 'body' with the youtube video player.
 
-* = quote, elevator, contact, customer, intervention
+The module can be found [here](lib/elevator_media.rb)
 
-rake wh:reset => Does all the previous rake command in order
+## Unit Test
 
-rake final:setup  => does rake db:reset and rake final:setup
+1. Test that the html returned from the getContent method is start and end with the good part of our string that represent the an html.
 
+2. Validate 2 column name from the intervention model
 
-# Week9
-## Interventions
-To create a new intervention you have to go into the backoffice and go to the interventions tab, then click on new intervention [or go to that link and login](http://rocketyenxm.site/admin/interventions/new)
+3. Validate the proper association between the model intervention and its parent models
 
-[The file of the tab can also be found here](https://github.com/YenXm/Rocket-Elevators-Foundation/blob/master/app/admin/interventions.rb)
+You can call the test using the command `bundle exec rspec spec/tester.rb`.
 
-<br>
-
-## Zendesk
-When a new interventions is created, a new ticket should also be created in zendesk. All the the data that we want are enter in the field section of the ticket.
-Username: levy.gagne@gmail.com
-Password: l7lP@I0ZP@Y$$w0%xl%N6N5*
-
-[Zendesk link](https://rocketelevator8423.zendesk.com/agent/)
-
-<br>
-
-## Rest API 
-[Github can be found here](https://github.com/YenXm/Rocket-Net5.git)
-
-<br>
-
-## Bonus
-
-### Bonus 1
-All api are now working on personal key which cann all be found in the local_env.yml file in the server.
-
-### Bonus 2
-1. The first api that I implemented get monetary data. It is used [there](http://rocketyenxm.site/admin/exchange_rate). I first created a table with a list of currency gathered from one of the possible GET method of the api and the Calculate button does a call to the server which in return, call the api with both currency chosen and return the basic transfer rate which is use to calculate the result.
-2. The second api is much more simple and only return a list of country name with their code(US, CA, FR) associated as a json. It was use to populate a new table.
-3. With the previous list of country, the third api is use to get the covid stats by countries. IT work similarly as the first one. [Can be found here](http://rocketyenxm.site/admin/covid_stats)
-
+And the file can be found [here](spec/tester.rb)
 
 
