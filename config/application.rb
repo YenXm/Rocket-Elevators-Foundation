@@ -14,7 +14,6 @@ module App
         # Initialize configuration defaults for originally generated Rails version.
         config.load_defaults 5.2
 
-
         # Settings in config/environments/* take precedence over those specified here.
         # Application configuration can go into files in config/initializers
         # -- all .rb files in that directory are automatically loaded after loading
@@ -25,5 +24,6 @@ module App
             YAML.load(File.open(env_file)).each { |key, value| ENV[key.to_s] = value } if File.exists?(env_file)
         end
         config.eager_load_paths << Rails.root.join('lib')
+        config.force_ssl = true
     end
 end
