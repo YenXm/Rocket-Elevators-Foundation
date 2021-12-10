@@ -3624,17 +3624,28 @@ emails =
 first_names.each_with_index do |first_name, index|
     #   puts index
     #   puts first_name
-
-    @user =
-        User.create(
-            email: emails[index],
-            password: 'Y%12Dn0Eqy*ofYU1eg@bGPdlm0#TQj3',
-            password_confirmation: 'Y%12Dn0Eqy*ofYU1eg@bGPdlm0#TQj3',
-            first_name: first_names[index],
-            last_name: last_names[index],
-            function: functions[index],
-        )
-
+    if index == 0
+        @user =
+            User.create(
+                email: emails[index],
+                password: 'Y%12Dn0Eqy*ofYU1eg@bGPdlm0#TQj3',
+                password_confirmation: 'Y%12Dn0Eqy*ofYU1eg@bGPdlm0#TQj3',
+                first_name: first_names[index],
+                last_name: last_names[index],
+                function: functions[index],
+            )
+    else
+        @user =
+            User.create(
+                email: emails[index],
+                password:
+                    Faker::Internet.password(min_length: 30, max_length: 40, mix_case: true, special_characters: true),
+                first_name: first_names[index],
+                last_name: last_names[index],
+                function: functions[index],
+            )
+    end
+    puts @user
     next unless @user&.valid?
 
     #   puts 'will create employee'
@@ -3896,12 +3907,14 @@ model = Array['Standard', 'Premium', 'Excelium']
 puts 'Making Users and what descend from it (Customer, building , battery ....)'
 user_progressbar = ProgressBar.create
 while $i < 100
-    @users =
+    super_password = Faker::Internet.password(min_length: 30, max_length: 40, mix_case: true) << "#"
+    @users = 
         User.create!(
             first_name: Faker::Name.unique.first_name,
             last_name: Faker::Name.unique.last_name,
             email: Faker::Internet.unique.email,
-            password: 'Y%12Dn0Eqy*ofYU1eg@bGPdlm0#TQj3',
+            password:
+                super_password,
         )
 
     #create a customer based on the user just created
