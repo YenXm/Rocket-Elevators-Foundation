@@ -2,26 +2,32 @@
 
 ## Streamer
 
-The Streamer page is accessed through the route `/media_player` and provide an embed youtube video player. The getContent method inside the Streamer class take the name of a video (They must be set beforehand in the initialize methode of the Streamer class) and will return a html 'body' with the youtube video player.
+The Streamer Class provide multiple method, the most important behind the getContent one. The getContent require the caller to pass an hash with a minimum this key/value set: {content_type: "string"}, the string value represent which content we want to be sent back from the method.
 
-The module can be found [here](lib/elevator_media.rb)
+Currently available content:
 
-## Unit Test (OUTDATED)
+1. {content_type: "youtube", video_name: :rickroll}, Right now there is only :rickroll available as video name.
+2. {content_type: "covid"}
+3. {content_type: "soccer"}
+4. {content_type: "weather"}
 
-1. Test that the html returned from the getContent method is start and end with the good part of our string that represent the an html.
+All these content return html representing an embedded media element.
 
-2. Validate 2 column name from the intervention model
+The file can be found [here](lib/elevator_media/streamer.rb)
 
-3. Validate the proper association between the model intervention and its parent models
+## Unit Test
 
-You can call the test using the command `bundle exec rspec spec/tester.rb`.
+RSpec 3.10
+  - rspec-core 3.10.1
+  - rspec-expectations 3.10.1
+  - rspec-mocks 3.10.2
+  - rspec-rails 5.0.2
+  - rspec-support 3.10.3
 
-And the file can be found [here](spec/tester.rb)
+Command to test streamer class *bundle exec rspec ./spec/elevator_media/streamer_spec.rb*
+
+The file can be found [here](spec/elevator_media/streamer_spec.rb)
 
 ## Security Assessment
 
 [Google Doc](https://docs.google.com/document/d/1DE_oE_EkPFk0K-YvXKI9s3noxbbfDreFsvPniUbDU-U/edit?usp=sharing)
-
-
-
-
