@@ -23,6 +23,25 @@ RSpec.describe ElevatorMedia do
         end
     end
 
+    describe 'youtube url behavior' do
+        it 'should be available' do
+            expect(streamer).to respond_to(:build_youtube_url)
+        end
+        it 'should build youtube url properly' do
+            url = streamer.build_youtube_url(:rickroll)
+            expect(url).to eq('http://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1&origin=http://example.com')
+        end
+    end
+    describe 'get youtube video from link' do
+        it 'get_youtube_video should be available' do
+            expect(streamer).to respond_to(:get_youtube_video)
+        end
+        it 'should use RestClient to call youtube video url' do
+            expect(RestClient).to receive(:get).with('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+            streamer.get_youtube_video
+        end
+    end
+
     describe 'get weather widget' do
         it 'get_weather_widget should be available' do
             expect(streamer).to respond_to(:get_weather_widget)
@@ -56,13 +75,6 @@ RSpec.describe ElevatorMedia do
         it 'should call covid map if the options is covid' do
             expect(streamer).to receive(:get_covid_map).at_least(:once)
             streamer.getContent({ content_type: 'covid' })
-        end
-    end
-
-    describe 'youtube url behavior' do
-        it 'should build youtube url properly' do
-            url = streamer.build_youtube_url(:rickroll)
-            expect(url).to eq('http://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1&origin=http://example.com')
         end
     end
 

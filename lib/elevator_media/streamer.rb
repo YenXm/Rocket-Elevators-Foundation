@@ -11,6 +11,12 @@ module ElevatorMedia
             parsed_weather_data = JSON.parse(weather_json) if weather_json
         end
 
+        def get_youtube_video
+            youtube_video = RestClient.get('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+            # parsed_youtube_response = JSON.parse(youtube_video) if youtube_video
+            # puts parsed_youtube_response
+        end
+
         def build_youtube_url(video_name)
             "http://www.youtube.com/embed/#{@video_list[video_name]}?enablejsapi=1&origin=http://example.com"
         end
