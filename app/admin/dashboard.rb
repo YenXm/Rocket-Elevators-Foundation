@@ -102,7 +102,7 @@ ActiveAdmin.register_page 'Dashboard' do
                              },
                          ]
 
-        ibm_call
+        # ibm_call
         div "Hello #{current_user}", id: 'Audio' do
         end
         audio controls: true do
