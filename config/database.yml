@@ -8,3 +8,13 @@ development:
   port: 3306
   # socket: /var/run/mysqld/mysqld.sock
   host: <%= ENV['MYSQL_DATABASE_HOST'] %>
+
+test:
+  encoding: utf8
+  database: <%= ENV['MYSQL_DATABASE_DBNAME'] %>
+  username: <%= ENV['POSTGRESQL_DATABASE_USER'] %>
+  password: <%= ENV['POSTGRESQL_DATABASE_PASSWORD'] %>
+  adapter: mysql2
+  port: 3306
+  # socket: /var/run/mysqld/mysqld.sock
+  host: <%= ENV['MYSQL_DATABASE_HOST'] %>
