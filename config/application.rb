@@ -24,6 +24,11 @@ module App
             env_file = File.join(Rails.root, 'config', 'local_env.yml')
             YAML.load(File.open(env_file)).each { |key, value| ENV[key.to_s] = value } if File.exists?(env_file)
         end
+
+        Bundler.require(*Rails.groups)
+        if ['development', 'test'].include? ENV['RAILS_ENV']
+            Dotenv::Railtie.load
+        end
         config.eager_load_paths << Rails.root.join('lib')
         # config.force_ssl = true
     end
