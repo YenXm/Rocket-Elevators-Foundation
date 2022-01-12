@@ -107,7 +107,6 @@ gem 'responders'
 
 gem 'sendgrid-ruby'
 gem 'dropbox_api'
-gem 'dotenv-rails'
 gem 'ibm_watson'
 gem 'twilio-ruby'
 
