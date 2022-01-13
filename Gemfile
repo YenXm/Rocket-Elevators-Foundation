@@ -136,3 +136,4 @@ gem "rest-client", "~> 2.1"
 gem "devise-security", "~> 0.16.0"
 
 gem "secure_headers", "~> 6.3"
+gem 'newrelic_rpm'
