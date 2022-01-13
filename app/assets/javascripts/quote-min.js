@@ -234,15 +234,15 @@ function actionListener(){
 
 // Corporate and Hybrid Calculation
     }else if(value=="corporate" || value== "hybride"){
-        let verify;
+        let verifyU;
         if(value=="corporate"){
             
-            verify = verifyInput(2);
+            verifyU = verifyInput(2);
 
         }else{
-            verify = verifyInput(3);
+            verifyU = verifyInput(3);
         }
-        if(verify == true)
+        if(verifyU == true)
         {
             nbFloor= parseInt(document.getElementById('txtFloor').value);
             nbBase = parseInt(document.getElementById('txtBasement').value);
