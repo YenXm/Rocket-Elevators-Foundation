@@ -2,8 +2,8 @@
 development:
   encoding: utf8
   database: <%= ENV['MYSQL_DATABASE_DBNAME'] %>
-  username: <%= ENV['POSTGRESQL_DATABASE_USER'] %>
-  password: <%= ENV['POSTGRESQL_DATABASE_PASSWORD'] %>
+  username: <%= ENV['MYSQL_DATABASE_USER'] %>
+  password: <%= ENV['MYSQL_DATABASE_PASSWORD'] %>
   adapter: mysql2
   port: 3306
   # socket: /var/run/mysqld/mysqld.sock
@@ -12,8 +12,8 @@ development:
 test:
   encoding: utf8
   database: <%= ENV['MYSQL_DATABASE_DBNAME'] %>
-  username: <%= ENV['POSTGRESQL_DATABASE_USER'] %>
-  password: <%= ENV['POSTGRESQL_DATABASE_PASSWORD'] %>
+  username: <%= ENV['MYSQL_DATABASE_USER'] %>
+  password: <%= ENV['MYSQL_DATABASE_PASSWORD'] %>
   adapter: mysql2
   port: 3306
   # socket: /var/run/mysqld/mysqld.sock
@@ -22,8 +22,8 @@ test:
 production:
   encoding: utf8
   database: <%= ENV['MYSQL_DATABASE_DBNAME'] %>
-  username: <%= ENV['POSTGRESQL_DATABASE_USER'] %>
-  password: <%= ENV['POSTGRESQL_DATABASE_PASSWORD'] %>
+  username: <%= ENV['MYSQL_DATABASE_USER'] %>
+  password: <%= ENV['MYSQL_DATABASE_PASSWORD'] %>
   adapter: mysql2
   port: 3306
   # socket: /var/run/mysqld/mysqld.sock
