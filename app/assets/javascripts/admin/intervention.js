@@ -21,13 +21,13 @@ function cascade(parent, child) {
 
 function display_cascade(parent, child) {
     // Select input from the field this cascade is call
-    parent_input = $(`#intervention_${parent}_id`);
+    parent_input = $("#intervention_"+ parent +"_id");
 
-    child_field = $(`#intervention_${child}_id_input`);
+    child_field = $("#intervention_"+ child +"_id_input");
     // All field that come after the parent field in the field list (<li></li>)
-    childrens_fields = $(`#intervention_${parent}_id_input ~ li`);
+    childrens_fields = $("#intervention_"+ parent +"_id_input ~ li");
     // All field that come after the child field in the field list (<li></li>)
-    childrens_of_child_field = $(`#intervention_${child}_id_input ~ li`);
+    childrens_of_child_field = $("#intervention_"+ child +"_id_input ~ li");
 
     if (parent_input.val() > 0) {
         child_field.show();
@@ -47,7 +47,7 @@ function collection(parent, child) {
     // This is the function that do the ajax call and then update on the option of the child's options
 
     // Both args must be lowercase in sigular
-    var parent_selection = $(`#intervention_${parent}_id`).val();
+    var parent_selection = $("#intervention_"+ parent +"_id").val();
     if (parent_selection && parent_selection != 0) {
         $.getJSON(
             "/collection",

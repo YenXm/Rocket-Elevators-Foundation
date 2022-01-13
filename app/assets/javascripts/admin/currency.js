@@ -16,7 +16,7 @@ function get_exchange_rate() {
                 var number = data["data"][0][0]["basic"] * $("#_interventions_create_number").val();
                 // Make number more readable for user
                 number = number.toLocaleString();
-                get_symbol($("#_interventions_create_to_currency").val(), `Result: ${number}`);
+                get_symbol($("#_interventions_create_to_currency").val(), "Result:" + number);
             }
         );
     } else {

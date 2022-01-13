@@ -3,6 +3,7 @@
 ActiveAdmin.register_page 'Covid Stats' do
     menu parent: "API +"
     content do
+        h1 "!!!!!!!DISABLED!!!!!!!"
         render 'form'
         h1 "Country Selected:", id: "country"
         h2 'Total Confirmed Cases:', id: 'total_confirmed_cases'
@@ -14,24 +15,24 @@ ActiveAdmin.register_page 'Covid Stats' do
     end
 
     controller do
-        def get_covid_stats()
-            require 'uri'
-            require 'net/http'
-            require 'openssl'
+        # def get_covid_stats()
+        #     require 'uri'
+        #     require 'net/http'
+        #     require 'openssl'
          
-            country = Country.find(params[:country]).country_id
-            url = URI("https://coronavirus-smartable.p.rapidapi.com/stats/v1/#{country}/")
+        #     country = Country.find(params[:country]).country_id
+        #     url = URI("https://coronavirus-smartable.p.rapidapi.com/stats/v1/#{country}/")
 
-            http = Net::HTTP.new(url.host, url.port)
-            http.use_ssl = true
-            http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        #     http = Net::HTTP.new(url.host, url.port)
+        #     http.use_ssl = true
+        #     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-            request = Net::HTTP::Get.new(url)
-            request["x-rapidapi-host"] = 'coronavirus-smartable.p.rapidapi.com'
-            request["x-rapidapi-key"] = ENV['COVID_KEY']
+        #     request = Net::HTTP::Get.new(url)
+        #     request["x-rapidapi-host"] = 'coronavirus-smartable.p.rapidapi.com'
+        #     request["x-rapidapi-key"] = ENV['COVID_KEY']
 
-            response = http.request(request)
-            render json: response.body
-        end
+        #     response = http.request(request)
+        #     render json: response.body
+        # end
     end
 end
