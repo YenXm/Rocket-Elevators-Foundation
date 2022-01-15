@@ -1,4 +1,3 @@
-
 development:
   encoding: utf8
   database: <%= ENV['MYSQL_DATABASE_DBNAME'] %>
@@ -18,7 +17,7 @@ test:
   port: 3306
   # socket: /var/run/mysqld/mysqld.sock
   host: <%= ENV['MYSQL_DATABASE_HOST'] %>
-  
+
 production:
   encoding: utf8
   database: <%= ENV['MYSQL_DATABASE_DBNAME'] %>

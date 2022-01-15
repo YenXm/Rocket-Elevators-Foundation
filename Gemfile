@@ -46,7 +46,7 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+# Call 'byebug' anywhere in the code to stop execution and get a debugger console
 gem 'byebug', platforms: %i[mri mingw x64_mingw]
 
 # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -64,76 +64,60 @@ gem 'capistrano3-puma'
 
 # Adds support for Capybara system testing and selenium driver
 gem 'capybara', '>= 2.15'
-gem 'selenium-webdriver'
+gem 'selenium-webdriver', '~> 3.142', '>= 3.142.7'
 # Easy installation and use of chromedriver to run system tests with Chrome
-gem 'chromedriver-helper'
-
+gem 'chromedriver-helper', '~> 1.0'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'activeadmin', github: "gregbell/active_admin"
-
 # Plus integrations with:
-gem 'cancancan'
 gem 'devise'
 gem 'draper'
 gem 'faker'
-gem 'pundit'
 gem 'rubocop', require: false
-gem "json"
-gem "highcharts-rails"
+gem 'json'
+gem 'highcharts-rails'
 
-
-
+# Active admin gems
+gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'arbre'
-
+gem 'inherited_resources'
+gem 'chartkick'
+gem 'formtastic'
 
 gem 'country_select', '~> 6.0'
 
-gem 'chartkick'
-
 gem 'groupdate'
 
-gem 'inherited_resources'
 gem 'has_scope'
 gem 'responders'
 
-
+# Api gem
 gem 'sendgrid-ruby'
 gem 'dropbox_api'
 gem 'ibm_watson'
 gem 'twilio-ruby'
-
 gem 'zendesk_api'
 gem 'gmaps4rails'
-gem "ruby-progressbar", "~> 1.11"
 
-gem 'formtastic'
+gem 'ruby-progressbar', '~> 1.11'
 
-gem "rspec", "~> 3.10"
-
-gem "rspec-core", "~> 3.10"
-
+# Unit Test gems
+gem 'rspec', '~> 3.10'
+gem 'rspec-core', '~> 3.10'
 gem 'rspec-rails'
-gem "shoulda-matchers", "~> 2.8.0"
+gem 'shoulda-matchers', '~> 4.0'
+gem 'shoulda', '~> 4.0'
+gem 'factory_bot_rails', '~> 6.2'
+gem 'webmock', '~> 3.14'
 # gem "factory_bot", "~> 6.2"
 
-gem "shoulda", "~> 3.5.0"
+gem 'rest-client', '~> 2.1'
 
+gem 'devise-security', '~> 0.16.0'
 
-gem "factory_bot_rails", "~> 6.2"
-
-
-
-
-gem "webmock", "~> 3.14"
-
-
-gem "rest-client", "~> 2.1"
-
-
-gem "devise-security", "~> 0.16.0"
-
-gem "secure_headers", "~> 6.3"
+gem 'secure_headers', '~> 6.3'
 gem 'newrelic_rpm'
+
+gem 'prettier'

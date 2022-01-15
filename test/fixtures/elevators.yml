@@ -4,7 +4,7 @@ one:
   column: one
   serial_number: MyString
   model: MyString
-  type: 
+  type:
   status: MyString
   Date_of_commissioning: 2021-11-02
   date_of_last_inspection: 2021-11-02
@@ -16,7 +16,7 @@ two:
   column: two
   serial_number: MyString
   model: MyString
-  type: 
+  type:
   status: MyString
   Date_of_commissioning: 2021-11-02
   date_of_last_inspection: 2021-11-02

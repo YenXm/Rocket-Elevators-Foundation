@@ -3,9 +3,7 @@
 require 'test_helper'
 
 class EmployeesControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @employee = employees(:one)
-  end
+  setup { @employee = employees(:one) }
 
   test 'should get index' do
     get employees_url
@@ -20,8 +18,13 @@ class EmployeesControllerTest < ActionDispatch::IntegrationTest
   test 'should create employee' do
     assert_difference('Employee.count') do
       post employees_url,
-           params: { employee: { first_name: @employee.first_name, function: @employee.function,
-                                 last_name: @employee.last_name } }
+           params: {
+             employee: {
+               first_name: @employee.first_name,
+               function: @employee.function,
+               last_name: @employee.last_name
+             }
+           }
     end
 
     assert_redirected_to employee_url(Employee.last)
@@ -39,15 +42,18 @@ class EmployeesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update employee' do
     patch employee_url(@employee),
-          params: { employee: { first_name: @employee.first_name, function: @employee.function,
-                                last_name: @employee.last_name } }
+          params: {
+            employee: {
+              first_name: @employee.first_name,
+              function: @employee.function,
+              last_name: @employee.last_name
+            }
+          }
     assert_redirected_to employee_url(@employee)
   end
 
   test 'should destroy employee' do
-    assert_difference('Employee.count', -1) do
-      delete employee_url(@employee)
-    end
+    assert_difference('Employee.count', -1) { delete employee_url(@employee) }
 
     assert_redirected_to employees_url
   end

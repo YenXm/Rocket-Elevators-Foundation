@@ -1,1 +1,1 @@
-json.partial! "columns/column", column: @column
+json.partial! 'columns/column', column: @column

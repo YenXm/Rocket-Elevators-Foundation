@@ -1,1 +1,1 @@
-json.array! @columns, partial: "columns/column", as: :column
+json.array! @columns, partial: 'columns/column', as: :column

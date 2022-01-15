@@ -1,7 +1,7 @@
 class DimCustomersController < InheritedResources::Base
-    private
+  private
 
-    def dim_customer_params
-        params.require(:dim_customer).permit
-    end
+  def dim_customer_params
+    params.require(:dim_customer).permit
+  end
 end

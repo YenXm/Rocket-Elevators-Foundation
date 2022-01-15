@@ -1,7 +1,7 @@
 class RemoveWeirdColumns < ActiveRecord::Migration[5.2]
   def change
     # remove_column :batteries, :Date_of_, :string
-    remove_column :batteries , :commissioning, :date
+    remove_column :batteries, :commissioning, :date
     add_column :batteries, :date_of_commissionig, :date
     remove_column :buildings, :phone_number_of_, :string
     remove_column :buildings, :the_building_administrator, :string

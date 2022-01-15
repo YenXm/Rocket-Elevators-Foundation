@@ -1,1 +1,1 @@
-json.partial! "batteries/battery", battery: @battery
+json.partial! 'batteries/battery', battery: @battery

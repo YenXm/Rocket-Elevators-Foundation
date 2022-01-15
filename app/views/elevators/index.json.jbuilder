@@ -1,1 +1,1 @@
-json.array! @elevators, partial: "elevators/elevator", as: :elevator
+json.array! @elevators, partial: 'elevators/elevator', as: :elevator

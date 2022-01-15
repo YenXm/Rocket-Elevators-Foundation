@@ -1,7 +1,7 @@
 class BuildingDetailsController < InheritedResources::Base
-    private
+  private
 
-    def building_detail_params
-        params.require(:building_detail).permit(:building_id, :information_key, :value)
-    end
+  def building_detail_params
+    params.require(:building_detail).permit(:building_id, :information_key, :value)
+  end
 end

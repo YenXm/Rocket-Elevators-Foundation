@@ -2,7 +2,7 @@
 
 one:
   batterie: one
-  type: 
+  type:
   number_of_floors_served: 1
   status: MyString
   information: MyText
@@ -10,7 +10,7 @@ one:
 
 two:
   batterie: two
-  type: 
+  type:
   number_of_floors_served: 1
   status: MyString
   information: MyText

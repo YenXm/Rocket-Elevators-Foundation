@@ -1,1 +1,1 @@
-json.array! @batteries, partial: "batteries/battery", as: :battery
+json.array! @batteries, partial: 'batteries/battery', as: :battery

@@ -1,7 +1,7 @@
 class CannotBeNullError < StandardError
-    attr_reader :reason
+  attr_reader :reason
 
-    def initialize(reason)
-        @reason = reason
-    end
+  def initialize(reason)
+    @reason = reason
+  end
 end

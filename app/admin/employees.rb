@@ -1,5 +1,5 @@
 ActiveAdmin.register Employee do
-    menu parent: "Users +"
+  menu parent: 'Users +'
 
-    permit_params :first_name, :last_name, :function, :email, :user_id
+  permit_params :first_name, :last_name, :function, :email, :user_id
 end

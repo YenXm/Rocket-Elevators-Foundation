@@ -2,7 +2,7 @@
 
 one:
   building: one
-  type: 
+  type:
   status: MyString
   employee: one
   Date_of_: MyString
@@ -14,7 +14,7 @@ one:
 
 two:
   building: two
-  type: 
+  type:
   status: MyString
   employee: two
   Date_of_: MyString

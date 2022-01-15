@@ -1,7 +1,7 @@
 class FactQuotesController < InheritedResources::Base
-    private
+  private
 
-    def fact_quote_params
-        params.require(:fact_quote).permit
-    end
+  def fact_quote_params
+    params.require(:fact_quote).permit
+  end
 end

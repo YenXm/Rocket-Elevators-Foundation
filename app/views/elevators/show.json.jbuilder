@@ -1,1 +1,1 @@
-json.partial! "elevators/elevator", elevator: @elevator
+json.partial! 'elevators/elevator', elevator: @elevator

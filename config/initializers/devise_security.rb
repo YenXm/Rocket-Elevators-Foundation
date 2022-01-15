@@ -5,7 +5,7 @@ Devise.setup do |config|
   # Configure security extension for devise
 
   # Should the password expire (e.g 3.months)
-  config.expire_password_after = 1.months 
+  config.expire_password_after = 1.months
 
   # Need 1 char of A-Z, a-z and 0-9
   config.password_complexity = { digit: 1, lower: 1, symbol: 1, upper: 1 }
@@ -17,6 +17,7 @@ Devise.setup do |config|
   # Examples:
   # config.deny_old_passwords = false # allow old passwords
   config.deny_old_passwords = true # will deny all the old passwords
+
   # config.deny_old_passwords = 3 # will deny new passwords that matches with the last 3 passwords
   # config.deny_old_passwords = true
 

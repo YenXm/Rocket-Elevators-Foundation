@@ -3,9 +3,7 @@
 require 'application_system_test_case'
 
 class EmployeesTest < ApplicationSystemTestCase
-  setup do
-    @employee = employees(:one)
-  end
+  setup { @employee = employees(:one) }
 
   test 'visiting the index' do
     visit employees_url
@@ -40,9 +38,7 @@ class EmployeesTest < ApplicationSystemTestCase
 
   test 'destroying a Employee' do
     visit employees_url
-    page.accept_confirm do
-      click_on 'Destroy', match: :first
-    end
+    page.accept_confirm { click_on 'Destroy', match: :first }
 
     assert_text 'Employee was successfully destroyed'
   end

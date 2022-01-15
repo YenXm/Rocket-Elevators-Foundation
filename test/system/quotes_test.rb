@@ -3,9 +3,7 @@
 require 'application_system_test_case'
 
 class QuotesTest < ApplicationSystemTestCase
-  setup do
-    @quote = quotes(:one)
-  end
+  setup { @quote = quotes(:one) }
 
   test 'visiting the index' do
     visit quotes_url
@@ -44,9 +42,7 @@ class QuotesTest < ApplicationSystemTestCase
 
   test 'destroying a Quote' do
     visit quotes_url
-    page.accept_confirm do
-      click_on 'Destroy', match: :first
-    end
+    page.accept_confirm { click_on 'Destroy', match: :first }
 
     assert_text 'Quote was successfully destroyed'
   end
